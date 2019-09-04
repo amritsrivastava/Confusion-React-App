@@ -1,8 +1,4 @@
-import React, { Component } from "react";
-import { Navbar, NavbarBrand } from "reactstrap";
-import Menu from "./MenuComponent";
-import DishDetail from "./DishdetailComponent";
-import { DISHES } from "../shared/dishes";
+import React, { Component } from 'react';
 
 class Main extends Component {
   constructor(props) {
@@ -17,7 +13,7 @@ class Main extends Component {
   onDishSelect(dishId) {
     this.setState({ selectedDish: dishId });
   }
-
+class Main extends Component {
   render() {
     return (
       <div>
@@ -37,6 +33,8 @@ class Main extends Component {
               dish => dish.id === this.state.selectedDish
             )[0]
           }
+    return (
+      <div>
         />
       </div>
     );
