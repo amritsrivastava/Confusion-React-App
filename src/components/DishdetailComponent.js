@@ -32,7 +32,7 @@ function RenderDish({ dish }) {
   );
 }
 
-function RenderComment({ comments }) {
+function RenderComment({ comments, addComment, dishId }) {
   if (comments) {
     return (
       <div className="col-12 col-md-5 m-1">
@@ -54,7 +54,7 @@ function RenderComment({ comments }) {
             </div>
           );
         })}
-        <CommentForm />
+        <CommentForm dishId={dishId} addComment={addComment} />
       </div>
     );
   } else {
@@ -73,6 +73,7 @@ class CommentForm extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   toggle() {
@@ -80,6 +81,11 @@ class CommentForm extends React.Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
+  }
+
+  handleSubmit(values) {
+    this.toggle();
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
   }
 
   render() {
@@ -116,16 +122,16 @@ class CommentForm extends React.Component {
                 </Col>
               </Row>
               <Row className="form-group">
-                <Label htmlFor="name" md={12}>
+                <Label htmlFor="author" md={12}>
                   Your Name
                 </Label>
                 <Col md={12}>
                   <Control.text
-                    model=".name"
-                    id="name"
+                    model=".author"
+                    id="author"
                     className="form-control"
-                    name="name"
-                    placeholder="Last Name"
+                    name="author"
+                    placeholder="Your Name"
                     validators={{
                       required,
                       minLength: minLength(3),
@@ -134,11 +140,11 @@ class CommentForm extends React.Component {
                   />
                   <Errors
                     className="text-danger"
-                    model=".name"
+                    model=".author"
                     show="touched"
                     messages={{
                       required: 'Required',
-                      minLength: 'must be greater than 2 characters.',
+                      minLength: 'Must be greater than 2 characters.',
                       maxLength: 'Must be 15 characters or less'
                     }}
                   />
@@ -192,7 +198,11 @@ const DishDetail = props => {
         </div>
         <div className="row">
           <RenderDish dish={props.dish} />
-          <RenderComment comments={props.comments} />
+          <RenderComment
+            comments={props.comments}
+            addComment={props.addComment}
+            dishId={props.dish.id}
+          />
         </div>
       </div>
     );
