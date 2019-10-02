@@ -17,6 +17,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 function RenderDish({ dish }) {
   return (
@@ -73,11 +74,10 @@ class CommentForm extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   toggle() {
-    console.log(this.state);
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
@@ -85,7 +85,12 @@ class CommentForm extends React.Component {
 
   handleSubmit(values) {
     this.toggle();
-    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+    this.props.addComment(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
+    );
   }
 
   render() {
@@ -181,7 +186,23 @@ class CommentForm extends React.Component {
 }
 
 const DishDetail = props => {
-  if (props.dish) {
+  if (props.isLoading) {
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
+        </div>
+      </div>
+    );
+  } else if (props.errMess) {
+    return (
+      <div className="container">
+        <div className="row">
+          <h4>{props.errMess}</h4>
+        </div>
+      </div>
+    );
+  } else if (props.dish) {
     return (
       <div className="container">
         <div className="row">
