@@ -34,7 +34,7 @@ function RenderDish({ dish }) {
   );
 }
 
-function RenderComment({ comments, addComment, dishId }) {
+function RenderComment({ comments, postComment, dishId }) {
   if (comments) {
     return (
       <div className="col-12 col-md-5 m-1">
@@ -56,7 +56,7 @@ function RenderComment({ comments, addComment, dishId }) {
             </div>
           );
         })}
-        <CommentForm dishId={dishId} addComment={addComment} />
+        <CommentForm dishId={dishId} postComment={postComment} />
       </div>
     );
   } else {
@@ -86,7 +86,7 @@ class CommentForm extends React.Component {
 
   handleSubmit(values) {
     this.toggle();
-    this.props.addComment(
+    this.props.postComment(
       this.props.dishId,
       values.rating,
       values.author,
@@ -222,7 +222,7 @@ const DishDetail = props => {
           <RenderDish dish={props.dish} />
           <RenderComment
             comments={props.comments}
-            addComment={props.addComment}
+            postComment={props.postComment}
             dishId={props.dish.id}
           />
         </div>
