@@ -23,7 +23,7 @@ import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function RenderDish({ dish }) {
   return (
-    <div className="col-12 col-md-5 m-1">
+    <div className='col-12 col-md-5 m-1'>
       <FadeTransform
         in
         transformProps={{
@@ -31,7 +31,7 @@ function RenderDish({ dish }) {
         }}
       >
         <Card>
-          <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+          <CardImg width='100%' src={baseUrl + dish.image} alt={dish.name} />
           <CardBody>
             <CardTitle>{dish.name}</CardTitle>
             <CardText>{dish.description}</CardText>
@@ -45,9 +45,9 @@ function RenderDish({ dish }) {
 function RenderComment({ comments, postComment, dishId }) {
   if (comments) {
     return (
-      <div className="col-12 col-md-5 m-1">
+      <div className='col-12 col-md-5 m-1'>
         <h4>Comments</h4>
-        <ul className="list-unstyled">
+        <ul className='list-unstyled'>
           <Stagger in>
             {comments.map(comment => {
               return (
@@ -109,8 +109,8 @@ class CommentForm extends React.Component {
   render() {
     return (
       <div>
-        <Button outline color="secondary" onClick={this.toggle}>
-          <i className="fa fa-pencil" /> Submit Comment
+        <Button outline color='secondary' onClick={this.toggle}>
+          <i className='fa fa-pencil' /> Submit Comment
         </Button>
         <Modal
           isOpen={this.state.modal}
@@ -120,16 +120,16 @@ class CommentForm extends React.Component {
           <ModalHeader toggle={this.toggle}>Submit Comment</ModalHeader>
           <ModalBody>
             <LocalForm onSubmit={values => this.handleSubmit(values)}>
-              <Row className="form-group">
-                <Label htmlFor="rating" md={12}>
+              <Row className='form-group'>
+                <Label htmlFor='rating' md={12}>
                   Rating
                 </Label>
                 <Col md={12}>
                   <Control.select
-                    model=".rating"
-                    type="select"
-                    className="form-control"
-                    name="rating"
+                    model='.rating'
+                    type='select'
+                    className='form-control'
+                    name='rating'
                   >
                     <option>1</option>
                     <option>2</option>
@@ -139,17 +139,17 @@ class CommentForm extends React.Component {
                   </Control.select>
                 </Col>
               </Row>
-              <Row className="form-group">
-                <Label htmlFor="author" md={12}>
+              <Row className='form-group'>
+                <Label htmlFor='author' md={12}>
                   Your Name
                 </Label>
                 <Col md={12}>
                   <Control.text
-                    model=".author"
-                    id="author"
-                    className="form-control"
-                    name="author"
-                    placeholder="Your Name"
+                    model='.author'
+                    id='author'
+                    className='form-control'
+                    name='author'
+                    placeholder='Your Name'
                     validators={{
                       required,
                       minLength: minLength(3),
@@ -157,9 +157,9 @@ class CommentForm extends React.Component {
                     }}
                   />
                   <Errors
-                    className="text-danger"
-                    model=".author"
-                    show="touched"
+                    className='text-danger'
+                    model='.author'
+                    show='touched'
                     messages={{
                       required: 'Required',
                       minLength: 'Must be greater than 2 characters.',
@@ -168,24 +168,24 @@ class CommentForm extends React.Component {
                   />
                 </Col>
               </Row>
-              <Row className="form-group">
-                <Label htmlFor="comment" md={12}>
+              <Row className='form-group'>
+                <Label htmlFor='comment' md={12}>
                   Comment
                 </Label>
                 <Col md={12}>
                   <Control.textarea
-                    model=".comment"
-                    className="form-control"
-                    type="textarea"
-                    row=""
-                    id="comment"
-                    name="comment"
+                    model='.comment'
+                    className='form-control'
+                    type='textarea'
+                    row=''
+                    id='comment'
+                    name='comment'
                   />
                 </Col>
               </Row>
-              <Row className="form-group">
+              <Row className='form-group'>
                 <Col>
-                  <Button type="submit" color="primary">
+                  <Button type='submit' color='primary'>
                     Submit
                   </Button>
                 </Col>
@@ -201,36 +201,36 @@ class CommentForm extends React.Component {
 const DishDetail = props => {
   if (props.isLoading) {
     return (
-      <div className="container">
-        <div className="row">
+      <div className='container'>
+        <div className='row'>
           <Loading />
         </div>
       </div>
     );
   } else if (props.errMess) {
     return (
-      <div className="container">
-        <div className="row">
+      <div className='container'>
+        <div className='row'>
           <h4>{props.errMess}</h4>
         </div>
       </div>
     );
   } else if (props.dish) {
     return (
-      <div className="container">
-        <div className="row">
+      <div className='container'>
+        <div className='row'>
           <Breadcrumb>
             <BreadcrumbItem>
-              <Link to="/menu">Menu</Link>
+              <Link to='/menu'>Menu</Link>
             </BreadcrumbItem>
             <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
           </Breadcrumb>
-          <div className="col-12">
+          <div className='col-12'>
             <h3>{props.dish.name}</h3>
             <hr />
           </div>
         </div>
-        <div className="row">
+        <div className='row'>
           <RenderDish dish={props.dish} />
           <RenderComment
             comments={props.comments}
