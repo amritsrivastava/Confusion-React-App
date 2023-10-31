@@ -57,6 +57,6 @@ jobs:
           namespace: 'test-frontend'
           chart: 'mark-1'
           repo: 'https://amrit.js.org/helm-chart'
-          value-files: ["values.yaml"]
+          value_files: ["values.yaml"]
         env:
           KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
