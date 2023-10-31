@@ -57,7 +57,8 @@ jobs:
         namespace: 'test-frontend'
         chart: 'mark-1'
         repo: "https://amrit.js.org/helm-chart"
-        value-files: [
+        value-files: >-
+        [
           "values.yaml"
         ]
       env:
