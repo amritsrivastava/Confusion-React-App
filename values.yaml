@@ -1,0 +1,20 @@
+image:
+  repository: registry.gitlab.mavq.com/product/intellisuite/orca-ui/master
+  tag: 25d33a9e0784c970d220e7fa96d0b984879a73e8
+  pullPolicy: IfNotPresent
+
+securityContext: false
+fullnameOverride: 'test-frontend'
+
+replicaCount: 1
+autoscaling:
+  enabled: false
+
+service:
+  enabled: true
+  type: ClusterIP
+  port: 80
+  containerPort: 5000
+
+ingress:
+  enabled: false
