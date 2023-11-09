@@ -44,19 +44,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-  deploy:
-    runs-on: 'ubuntu-latest'
-    environment: master
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: 'Deploy'
-        uses: 'deliverybot/helm@v1'
-        with:
-          release: 'test-frontend'
-          namespace: 'test-frontend'
-          chart: 'mark-1'
-          repo: 'https://amrit.js.org/helm-chart'
-          value_files: ["values.yaml"]
-        env:
-          KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
